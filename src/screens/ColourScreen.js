@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { View, Text, StyleSheet, Button } from "react-native";
+import { View, Text, StyleSheet, Button, FlatList } from "react-native";
 import  ColourView  from './components/ColourView';
 
 export default ColourScreen = () => {
@@ -9,11 +9,11 @@ export default ColourScreen = () => {
         <Button title="Add Color" onPress={() => {
             setColor([...color, randomRGB()]);
             }} />
-            {color.map((color) => {
-                return (
-                <ColourView cubeColor={color} />
-                );
-            })}
+            <FlatList
+                data={color}
+                renderItem={({ item }) => <ColourView cubeColor={item} />}
+                keyExtractor={color => color}
+            />
     </View>
     );
 }
