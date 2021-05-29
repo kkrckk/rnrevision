@@ -3,11 +3,17 @@ import { View, Text, StyleSheet, Button } from "react-native";
 import  ColourView  from './components/ColourView';
 
 export default ColourScreen = () => {
-    const [color, setColor] = useState(['yellow']);
+    const [color, setColor] = useState([randomRGB()]);
     return (
     <View>
-            <Button title="Add Color" onPress={() => setColor(color.push('blue'))} />
-            <ColourView color={randomRGB()} />
+        <Button title="Add Color" onPress={() => {
+            setColor([...color, randomRGB()]);
+            }} />
+            {color.map((color) => {
+                return (
+                <ColourView cubeColor={color} />
+                );
+            })}
     </View>
     );
 }
